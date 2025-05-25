@@ -1,0 +1,218 @@
+.container {
+    padding: 2rem;
+    font-family: sans-serif;
+    background-color: #f0f4f8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h2 {
+    margin-bottom: 2rem;
+    color: #007bff;
+  }
+  
+  .searchBar {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .searchBar label {
+    font-weight: bold;
+  }
+  
+  .searchBar select,
+  .searchBar input[type="text"] {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    min-width: 200px;
+  }
+  
+  .addForm {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+  
+  .addForm input,
+  .addForm textarea {
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+  
+  .addForm button {
+    padding: 0.5rem 1rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .addForm button:hover {
+    background-color: #1e7e34;
+  }
+  
+  .postList {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  .postItem {
+    background-color: white;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: background-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .postItem:hover {
+    background-color: #e6f0ff;
+  }
+  
+  .selected {
+    border: 2px solid #007bff;
+    background-color: #f0f8ff;
+  }
+  
+  .postItem input[type="text"],
+  .postItem textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  .postItem button {
+    width: fit-content;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 0.5rem;
+  }
+  
+  .postItem button:hover {
+    background-color: #a52835;
+  }
+  
+  .postItem button:nth-of-type(2) {
+    background-color: #007bff;
+  }
+  
+  .postItem button:nth-of-type(2):hover {
+    background-color: #0056b3;
+  }
+  
+  .postBody {
+    font-style: italic;
+    color: #333;
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  .commentsSection {
+    margin-top: 1rem;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .commentsSection h4 {
+    margin-bottom: 1rem;
+    color: #444;
+  }
+  
+  .commentItem {
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .commentItem:last-child {
+    border-bottom: none;
+  }
+  
+  .commentItem textarea {
+    resize: vertical;
+    padding: 0.4rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  .commentItem button {
+    align-self: flex-start;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 0.3rem;
+  }
+  
+  .commentItem button:hover {
+    background-color: #a52835;
+  }
+  
+  .commentForm {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .commentForm textarea {
+    resize: vertical;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  .commentForm button {
+    align-self: flex-start;
+    padding: 0.4rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .commentForm button:hover {
+    background-color: #0056b3;
+  }
+  
