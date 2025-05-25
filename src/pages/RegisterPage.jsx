@@ -23,7 +23,6 @@ export default function RegisterPage() {
       return;
     }
 
-    // יצירת משתמש חדש - הכנסת מינימום פרטים כרגע
     const newUser = {
       username,
       website: password,

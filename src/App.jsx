@@ -1,5 +1,5 @@
-// App.jsx
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+
+import {Routes, Route, Navigate } from "react-router-dom";
 import CompleteRegistrationPage from "./pages/CompleteRegistrationPage";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
