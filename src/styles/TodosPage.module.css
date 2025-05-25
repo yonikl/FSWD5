@@ -1,0 +1,117 @@
+.container {
+    padding: 2rem;
+    font-family: sans-serif;
+    background-color: #f0f4f8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h2 {
+    margin-bottom: 2rem;
+    color: #007bff;
+  }
+  
+  .controlRow {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 1000px;
+  }
+  
+  .controlSection {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+    flex: 1 1 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 250px;
+    min-height: 180px;
+  }
+  
+  .controlSection label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .controlSection select,
+  .controlSection input[type="text"] {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .controlSection button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+  
+  .controlSection button:hover {
+    background-color: #0056b3;
+  }
+  
+  .todoList {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 700px;
+  }
+  
+  .todoItem {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  
+  .todoItem span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .todoItem input[type="text"] {
+    flex-grow: 1;
+    padding: 0.3rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .todoItem button {
+    align-self: flex-start;
+    background-color: #dc3545;
+    margin-top: 0.5rem;
+    padding: 0.4rem 1rem;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .todoItem button:hover {
+    background-color: #a52835;
+  }
+  
