@@ -144,3 +144,22 @@
     border-top: 1px solid rgba(52, 152, 219, 0.1);
     margin-top: 0.5rem;
 } 
+
+.search-select {
+    padding: 0.75rem 1rem;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.1);
+    cursor: pointer;
+    min-width: 150px;
+}
+
+.search-select:focus {
+    outline: none;
+    border-color: #2980b9;
+    box-shadow: 0 2px 15px rgba(52, 152, 219, 0.2);
+    transform: translateY(-1px);
+}
