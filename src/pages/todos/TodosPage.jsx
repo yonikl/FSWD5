@@ -50,8 +50,14 @@ export default function TodosPage() {
 
   const handleAddTodo = async () => {
     if (!newTitle.trim()) return;
+    const resAll = await fetch("http://localhost:3000/todos");
+    const allTodos = await resAll.json();
+    const maxId = allTodos.reduce((max, todo) => Math.max(max, Number(todo.id)), 0);
+    const newId = (maxId + 1).toString();
+
     const newTodo = {
-      userId: user.id,
+      id: newId,
+      userId: Number(user.id),
       title: newTitle,
       completed: false,
     };

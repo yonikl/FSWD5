@@ -23,7 +23,12 @@ export default function RegisterPage() {
       return;
     }
 
+    const allRes = await fetch("http://localhost:3000/users");
+    const users = await allRes.json();
+    const maxId = users.reduce((max, user) => Math.max(max, user.id || 0), 0);
+    const newId = (maxId + 1).toString();
     const newUser = {
+      id: newId,
       username,
       website: password,
       name: "",

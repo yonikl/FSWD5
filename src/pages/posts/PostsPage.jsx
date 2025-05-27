@@ -57,9 +57,15 @@ export default function PostsPage() {
 
   const handleAddPost = async (e) => {
     e.preventDefault();
+
+    const resAll = await fetch("http://localhost:3000/posts");
+    const allPosts = await resAll.json();
+    const maxId = allPosts.reduce((max, todo) => Math.max(max, Number(todo.id)), 0);
+    const newId = (maxId + 1).toString();
     const post = {
       ...newPost,
-      userId: user.id,
+      userId: Number(user.id),
+      id:newId
     };
     const res = await fetch("http://localhost:3000/posts", {
       method: "POST",
