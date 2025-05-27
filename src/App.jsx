@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 import TodosPage from "./pages/TodosPage";
 import PostsPage from "./pages/PostsPage";
+import AlbumsPage from "./pages/AlbumsPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/complete-registration" element={<CompleteRegistrationPage />} />
       <Route path="/users/:userId/todos" element={<TodosPage />} />
       <Route path="/users/:userId/posts" element={<PostsPage />} />
+      <Route path="/users/:userId/albums" element={<AlbumsPage />} />
       <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   );

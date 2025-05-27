@@ -34,7 +34,7 @@ export default function HomePage() {
           <button onClick={() => setShowInfo(true)}>Info</button>
           <button onClick={() => navigate(`/users/${user.id}/todos`)}>Todos</button>
           <button onClick={() => navigate(`/users/${user.id}/posts`)}>Posts</button>
-          <button>Albums</button>
+          <button onClick={() => navigate(`/users/${user.id}/albums`)}>Albums</button>
           <button onClick={handleLogout}>Logout</button>
         </div>
       </nav>
