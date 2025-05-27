@@ -9,6 +9,7 @@ export default function AlbumsPage() {
     const navigate = useNavigate();
     const [albums, setAlbums] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
+    const [searchField, setSearchField] = useState('title');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isPhotosModalOpen, setIsPhotosModalOpen] = useState(false);
     const [selectedAlbumId, setSelectedAlbumId] = useState(null);
@@ -25,9 +26,14 @@ export default function AlbumsPage() {
         }
     }, [navigate, userId]);
 
-    const filteredAlbums = albums.filter(album =>
-        album.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const filteredAlbums = albums.filter(album => {
+        if (searchField === 'title') {
+            return album.title.toLowerCase().includes(searchQuery.toLowerCase());
+        } else if (searchField === 'id') {
+            return album.id.toString().includes(searchQuery);
+        }
+        return true;
+    });
 
     const handleAddAlbum = () => {
         setIsModalOpen(true);
@@ -82,9 +88,17 @@ export default function AlbumsPage() {
             <div className="albums-header">
                 <h1>Albums</h1>
                 <div className="albums-controls">
+                    <select 
+                        value={searchField}
+                        onChange={(e) => setSearchField(e.target.value)}
+                        className="search-select"
+                    >
+                        <option value="title">Search by Title</option>
+                        <option value="id">Search by ID</option>
+                    </select>
                     <input
                         type="text"
-                        placeholder="Search albums..."
+                        placeholder={`Search by ${searchField}...`}
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="search-input"
