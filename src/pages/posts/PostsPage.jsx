@@ -38,7 +38,7 @@ export default function PostsPage() {
   const handleSearch = () => {
     const value = searchValue.toLowerCase();
     return posts.filter((post) => {
-      if (searchField === "id") return post.id.toString() === value;
+      if (searchField === "id") return post.id.toString().includes(searchValue);
       if (searchField === "title") return post.title.toLowerCase().includes(value);
       return true;
     });

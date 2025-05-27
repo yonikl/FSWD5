@@ -2,7 +2,7 @@ import styles from "../../styles/TodosPage.module.css";
 
 export default function TodoItem({ todo, onEdit, onToggle, onDelete }) {
   return (
-    <li className={styles.todoItem}>
+    <li className={`${styles.todoItem} ${todo.completed ? styles.completed : ''}`}>
       <span>
         <strong>ID:</strong> {todo.id}
       </span>
@@ -20,7 +20,7 @@ export default function TodoItem({ todo, onEdit, onToggle, onDelete }) {
           checked={todo.completed}
           onChange={() => onToggle(todo)}
         />
-        Completed
+        <label>Completed</label>
       </span>
       <button onClick={() => onDelete(todo.id)}>Delete</button>
     </li>
