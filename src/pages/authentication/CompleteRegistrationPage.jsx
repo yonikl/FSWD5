@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "../styles/AuthPages.module.css";
+import styles from "../../styles/AuthPages.module.css";
 
 export default function CompleteRegistrationPage() {
   const [name, setName] = useState("");

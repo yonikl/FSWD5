@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import styles from "../styles/AuthPages.module.css";
+import styles from "../../styles/AuthPages.module.css";
 
 export default function RegisterPage() {
   const [username, setUsername] = useState("");

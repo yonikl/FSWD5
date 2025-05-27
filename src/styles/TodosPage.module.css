@@ -1,117 +1,149 @@
 .container {
-    padding: 2rem;
-    font-family: sans-serif;
-    background-color: #f0f4f8;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  h2 {
-    margin-bottom: 2rem;
-    color: #007bff;
-  }
-  
-  .controlRow {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    align-items: stretch;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-    width: 100%;
-    max-width: 1000px;
-  }
-  
-  .controlSection {
-    background: #ffffff;
-    border-radius: 8px;
-    padding: 1rem 1.5rem;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
-    flex: 1 1 280px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-width: 250px;
-    min-height: 180px;
-  }
-  
-  .controlSection label {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-  
-  .controlSection select,
-  .controlSection input[type="text"] {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
-  
-  .controlSection button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    width: 100%;
-  }
-  
-  .controlSection button:hover {
-    background-color: #0056b3;
-  }
-  
-  .todoList {
-    list-style: none;
-    padding: 0;
-    margin-top: 1rem;
-    width: 100%;
-    max-width: 700px;
-  }
-  
-  .todoItem {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-  
-  .todoItem span {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .todoItem input[type="text"] {
-    flex-grow: 1;
-    padding: 0.3rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
-  
-  .todoItem button {
-    align-self: flex-start;
-    background-color: #dc3545;
-    margin-top: 0.5rem;
-    padding: 0.4rem 1rem;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .todoItem button:hover {
-    background-color: #a52835;
-  }
-  
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f0f4f8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  margin-bottom: 2rem;
+  color: #007bff;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* שלוש הקופסאות של החיפוש, המיון וההוספה */
+.controlRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.controlSection {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1 1 300px;
+  min-width: 280px;
+  max-width: 350px;
+  transition: transform 0.3s ease;
+}
+
+.controlSection:hover {
+  transform: translateY(-4px);
+}
+
+.controlSection label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.controlSection input[type="text"],
+.controlSection select {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box; /* ✅ מונע גלישה */
+}
+
+
+.controlSection input[type="text"]:focus,
+.controlSection select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.controlSection button {
+  background: linear-gradient(to right, #007bff, #0069d9);
+  color: white;
+  font-weight: bold;
+  padding: 0.55rem 1rem;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.controlSection button:hover {
+  background: linear-gradient(to right, #0069d9, #0056b3);
+  transform: scale(1.03);
+}
+
+/* רשימת todos */
+.todoList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+  padding: 1rem;
+  list-style: none;
+}
+
+.todoItem {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.todoItem:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.todoItem span {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+  gap: 0.25rem;
+}
+
+.todoItem input[type="text"] {
+  padding: 0.45rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+.todoItem input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 0.5rem;
+}
+
+.todoItem button {
+  align-self: flex-end;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.todoItem button:hover {
+  background-color: #a52835;
+}

@@ -18,6 +18,7 @@ export default function PostList({
   onAddComment,
   onUpdateComment,
   onDeleteComment,
+  onOpenModal
 }) {
   return (
     <ul className={styles.postList}>
@@ -42,6 +43,7 @@ export default function PostList({
           onAddComment={onAddComment}
           onUpdateComment={onUpdateComment}
           onDeleteComment={onDeleteComment}
+          onOpenModal={onOpenModal}
         />
       ))}
     </ul>

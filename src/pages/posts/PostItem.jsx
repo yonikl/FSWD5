@@ -18,31 +18,21 @@ export default function PostItem({
   onAddComment,
   onUpdateComment,
   onDeleteComment,
+  onOpenModal
 }) {
   return (
     <li className={`${styles.postItem} ${isSelected ? styles.selected : ""}`}>
       <span><strong>ID:</strong> {post.id}</span>
 
-      <input
-        type="text"
-        value={post.title}
-        onChange={(e) => onUpdate(post.id, "title", e.target.value)}
-        onBlur={(e) => onUpdate(post.id, "title", e.target.value)}
-      />
 
-      {isSelected && (
-        <textarea
-          className={styles.postBody}
-          value={post.body}
-          onChange={(e) => onUpdate(post.id, "body", e.target.value)}
-          onBlur={(e) => onUpdate(post.id, "body", e.target.value)}
-        />
-      )}
-
+      <h3
+        onClick={() => onOpenModal(post)}
+        style={{ cursor: "pointer", color: "#007bff", margin: 0 }}
+      >
+        {post.title}
+      </h3>
+      <button onClick={() => onOpenModal(post)}>Open Full View</button>
       <button onClick={() => onDelete(post.id)}>Delete</button>
-      <button onClick={() => onSelect(post.id)}>
-        {isSelected ? "Hide" : "View"} Body
-      </button>
       <button onClick={() => toggleComments(post.id)}>Show Comments</button>
 
       {showComments && (

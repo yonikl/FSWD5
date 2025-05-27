@@ -5,12 +5,14 @@ import Navbar from "../../components/Navbar";
 import PostsSearchBar from "./PostsSearchBar";
 import AddPostForm from "./AddPostForm";
 import PostList from "./PostList";
+import FullPostModal from "./FullPostModal";
 
 export default function PostsPage() {
   const { userId } = useParams();
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
+  const [modalPost, setModalPost] = useState(null);
   const [searchField, setSearchField] = useState("id");
   const [searchValue, setSearchValue] = useState("");
   const [selectedPostId, setSelectedPostId] = useState(null);
@@ -34,11 +36,19 @@ export default function PostsPage() {
   }, [navigate]);
 
   const handleSearch = () => {
-    let url = `http://localhost:3000/posts?userId=${userId}`;
-    if (searchField === "id") url += `&id=${searchValue}`;
-    else if (searchField === "title") url += `&title_like=${encodeURIComponent(searchValue)}`;
-    fetch(url).then((res) => res.json()).then(setPosts);
+    const value = searchValue.toLowerCase();
+    return posts.filter((post) => {
+      if (searchField === "id") return post.id.toString() === value;
+      if (searchField === "title") return post.title.toLowerCase().includes(value);
+      return true;
+    });
   };
+
+  const sortedPosts = handleSearch().sort((a, b) => {
+    if (searchField === "id") return a.id - b.id;
+    if (searchField === "title") return a.title.localeCompare(b.title);
+    return 0;
+  });
 
   const handlePostChange = (e) => {
     const { name, value } = e.target;
@@ -175,7 +185,7 @@ export default function PostsPage() {
         />
 
         <PostList
-          posts={posts}
+          posts={sortedPosts}
           selectedPostId={selectedPostId}
           onSelect={handleSelect}
           onUpdate={handleUpdatePost}
@@ -191,6 +201,12 @@ export default function PostsPage() {
           onAddComment={handleAddComment}
           onUpdateComment={handleUpdateComment}
           onDeleteComment={handleDeleteComment}
+          onOpenModal={setModalPost}
+        />
+        <FullPostModal
+          post={modalPost}
+          user={user}
+          onClose={() => setModalPost(null)}
         />
       </div>
     </>

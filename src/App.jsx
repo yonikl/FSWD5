@@ -1,9 +1,9 @@
 
 import {Routes, Route, Navigate } from "react-router-dom";
-import CompleteRegistrationPage from "./pages/CompleteRegistrationPage";
-import LoginPage from "./pages/LoginPage";
+import CompleteRegistrationPage from "./pages/authentication/CompleteRegistrationPage";
+import LoginPage from "./pages/authentication/LoginPage";
 import HomePage from "./pages/HomePage";
-import RegisterPage from "./pages/RegisterPage";
+import RegisterPage from "./pages/authentication/RegisterPage";
 import TodosPage from "./pages/todos/TodosPage";
 import PostsPage from "./pages/posts/PostsPage";
 import AlbumsPage from "./pages/albums/AlbumsPage";
