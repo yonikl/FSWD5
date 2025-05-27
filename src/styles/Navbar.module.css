@@ -1,0 +1,40 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007bff;
+  padding: 1rem 2rem;
+  color: white;
+  font-family: sans-serif;
+}
+
+.navLeft {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.navRight {
+  display: flex;
+  gap: 1rem;
+}
+
+.navRight button {
+  background: white;
+  color: #007bff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.navRight button:hover {
+  background-color: #e6e6e6;
+}
+
+.mainContent {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}

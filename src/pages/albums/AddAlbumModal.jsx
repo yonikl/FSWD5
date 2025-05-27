@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/AddAlbumModal.css';
+import '../../styles/AddAlbumModal.css';
 
 const AddAlbumModal = ({ isOpen, onClose, onAddAlbum }) => {
     const [title, setTitle] = useState('');

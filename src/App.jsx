@@ -4,9 +4,9 @@ import CompleteRegistrationPage from "./pages/CompleteRegistrationPage";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
-import TodosPage from "./pages/TodosPage";
-import PostsPage from "./pages/PostsPage";
-import AlbumsPage from "./pages/AlbumsPage";
+import TodosPage from "./pages/todos/TodosPage";
+import PostsPage from "./pages/posts/PostsPage";
+import AlbumsPage from "./pages/albums/AlbumsPage";
 
 function App() {
   return (

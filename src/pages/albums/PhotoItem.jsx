@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import '../styles/PhotoItem.css';
+import '../../styles/PhotoItem.css';
 
 export default function PhotoItem({ photo, onEdit, onDelete, lastRef }) {
     const imgRef = useRef(null);

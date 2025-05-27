@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UserInfo from "../components/UserInfo";
+import Navbar from "../components/Navbar";
 import styles from "../styles/HomePage.module.css";
 
 export default function HomePage() {
@@ -25,23 +26,11 @@ export default function HomePage() {
   if (!user) return null;
 
   return (
-    <div>
-      <nav className={styles.navbar}>
-        <div className={styles.navLeft}>
-          <span className={styles.welcome}>Welcome, {user.name}!</span>
-        </div>
-        <div className={styles.navRight}>
-          <button onClick={() => setShowInfo(true)}>Info</button>
-          <button onClick={() => navigate(`/users/${user.id}/todos`)}>Todos</button>
-          <button onClick={() => navigate(`/users/${user.id}/posts`)}>Posts</button>
-          <button onClick={() => navigate(`/users/${user.id}/albums`)}>Albums</button>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      </nav>
-
+    <>
+      <Navbar user={user} onLogout={handleLogout} onInfo={() => setShowInfo(true)} />
       <main className={styles.mainContent}>
         {showInfo && <UserInfo user={user} />}
       </main>
-    </div>
+    </>
   );
 }

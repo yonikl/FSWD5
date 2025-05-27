@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import PhotoItem from './PhotoItem';
-import '../styles/PhotosModal.css';
+import '../../styles/PhotosModal.css';
 
 function PhotoFormModal({ isOpen, onClose, onSubmit, initialData }) {
     const [title, setTitle] = useState(initialData?.title || '');
