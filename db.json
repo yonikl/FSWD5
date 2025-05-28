@@ -229,29 +229,6 @@
         "catchPhrase": "Centralized empowering task-force",
         "bs": "target end-to-end models"
       }
-    },
-    {
-      "id": "11",
-      "username": "nnn",
-      "website": "11",
-      "name": "נתן שטרן",
-      "email": "ar@gmail.com",
-      "phone": "0543927112",
-      "address": {
-        "street": "לוחמי הגיטו",
-        "suite": "22",
-        "city": "פתח תקווה",
-        "zipcode": "4940046",
-        "geo": {
-          "lat": "",
-          "lng": ""
-        }
-      },
-      "company": {
-        "name": "",
-        "catchPhrase": "",
-        "bs": ""
-      }
     }
   ],
   "todos": [
@@ -1453,24 +1430,6 @@
       "userId": 10,
       "id": "200",
       "title": "ipsam aperiam voluptates qui",
-      "completed": false
-    },
-    {
-      "id": "201",
-      "userId": 11,
-      "title": "wb",
-      "completed": false
-    },
-    {
-      "id": "202",
-      "userId": 11,
-      "title": "cjm",
-      "completed": true
-    },
-    {
-      "id": "203",
-      "userId": 11,
-      "title": "cjgm",
       "completed": false
     }
   ],
@@ -40478,34 +40437,6 @@
       "name": "ex eaque eum natus",
       "email": "Emma@joanny.ca",
       "body": "perspiciatis quis doloremque\nveniam nisi eos velit sed\nid totam inventore voluptatem laborum et eveniet\naut aut aut maxime quia temporibus ut omnis"
-    },
-    {
-      "id": "4421",
-      "postId": "101",
-      "name": "נתן שטרן",
-      "email": "ar@gmail.com",
-      "body": "aewvGE"
-    },
-    {
-      "id": "c3d3",
-      "postId": "101",
-      "name": "נתן שטרן",
-      "email": "ar@gmail.com",
-      "body": "aerbZE"
-    },
-    {
-      "postId": "1",
-      "name": "Leanne Graham",
-      "email": "Sincere@april.biz",
-      "body": "ggggg",
-      "id": "yvAOgC3"
-    },
-    {
-      "postId": "1",
-      "name": "Leanne Graham",
-      "email": "Sincere@april.biz",
-      "body": "yy",
-      "id": "J3bllTw"
     }
   ],
   "posts": [
@@ -41108,18 +41039,6 @@
       "id": "100",
       "title": "at nam consequatur ea labore ea harum",
       "body": "cupiditate quo est a modi nesciunt soluta\nipsa voluptas error itaque dicta in\nautem qui minus magnam et distinctio eum\naccusamus ratione error aut"
-    },
-    {
-      "id": "101",
-      "title": "asvbeW",
-      "body": "abrW",
-      "userId": 11
-    },
-    {
-      "id": "102",
-      "title": "arbz",
-      "body": "aWR",
-      "userId": 11
     }
   ]
 }
