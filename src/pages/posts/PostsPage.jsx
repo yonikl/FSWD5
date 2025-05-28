@@ -160,6 +160,13 @@ export default function PostsPage() {
     }));
   };
 
+  const handleCommentChange = (postId, updatedComments) => {
+    setCommentsByPost((prev) => ({
+      ...prev,
+      [postId]: updatedComments
+    }));
+  };
+
   if (!user) return null;
 
   return (
@@ -208,12 +215,16 @@ export default function PostsPage() {
           onUpdateComment={handleUpdateComment}
           onDeleteComment={handleDeleteComment}
           onOpenModal={setModalPost}
+          onCommentChange={handleCommentChange}
         />
-        <FullPostModal
-          post={modalPost}
-          user={user}
-          onClose={() => setModalPost(null)}
-        />
+        {modalPost && (
+          <FullPostModal
+            post={modalPost}
+            user={user}
+            onClose={() => setModalPost(null)}
+            onCommentChange={handleCommentChange}
+          />
+        )}
       </div>
     </>
   );

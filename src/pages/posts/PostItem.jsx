@@ -20,20 +20,36 @@ export default function PostItem({
   onDeleteComment,
   onOpenModal
 }) {
+  const handleCardClick = (e) => {
+    // Don't trigger if clicking on buttons or comments section
+    if (e.target.closest('button') || e.target.closest(`.${styles.commentsSection}`)) {
+      return;
+    }
+    onOpenModal(post);
+  };
+
   return (
-    <li className={`${styles.postItem} ${isSelected ? styles.selected : ""}`}>
-      <span><strong>ID:</strong> {post.id}</span>
-
-
-      <h3
-        onClick={() => onOpenModal(post)}
-        style={{ cursor: "pointer", color: "#007bff", margin: 0 }}
-      >
-        {post.title}
-      </h3>
-      <button onClick={() => onOpenModal(post)}>Open Full View</button>
-      <button onClick={() => onDelete(post.id)}>Delete</button>
-      <button onClick={() => toggleComments(post.id)}>Show Comments</button>
+    <li 
+      className={`${styles.postItem} ${isSelected ? styles.selected : ""}`}
+      onClick={handleCardClick}
+    >
+      <div className={styles.postContent}>
+        <span>Post #{post.id}</span>
+        <h3>{post.title}</h3>
+        <p>{post.body}</p>
+      </div>
+      
+      <div className={styles.buttonGroup}>
+        <button onClick={() => onOpenModal(post)}>
+          View Full Post
+        </button>
+        <button onClick={() => onDelete(post.id)}>
+          Delete Post
+        </button>
+        <button onClick={() => toggleComments(post.id)}>
+          {showComments ? "Hide Comments" : "Show Comments"}
+        </button>
+      </div>
 
       {showComments && (
         <CommentsSection

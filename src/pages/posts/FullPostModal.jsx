@@ -1,20 +1,27 @@
 import { useEffect, useState } from "react";
 import styles from "../../styles/FullPostModal.module.css";
+import CommentsSection from "./CommentsSection";
 
-export default function FullPostModal({ post, user, onClose }) {
+export default function FullPostModal({ post, user, onClose, onCommentChange }) {
   const [comments, setComments] = useState([]);
-  const [showComments, setShowComments] = useState(false);
+  const [showComments, setShowComments] = useState(true);
   const [newComment, setNewComment] = useState("");
+  const [editingComments, setEditingComments] = useState({});
 
   useEffect(() => {
-    if (post && showComments) {
+    if (post) {
       fetch(`http://localhost:3000/comments?postId=${post.id}`)
         .then((res) => res.json())
-        .then(setComments);
+        .then(data => {
+          setComments(data);
+          // Update parent component's comments
+          onCommentChange?.(post.id, data);
+        });
     }
-  }, [post, showComments]);
+  }, [post, onCommentChange]);
 
-  const handleAddComment = async () => {
+  const handleAddComment = async (e) => {
+    e.preventDefault();
     if (!newComment.trim()) return;
 
     const comment = {
@@ -31,38 +38,113 @@ export default function FullPostModal({ post, user, onClose }) {
     });
 
     const saved = await res.json();
-    setComments((prev) => [...prev, saved]);
+    const updatedComments = [...comments, saved];
+    setComments(updatedComments);
+    // Update parent component's comments
+    onCommentChange?.(post.id, updatedComments);
     setNewComment("");
+  };
+
+  const handleUpdateComment = async (commentId, newBody) => {
+    await fetch(`http://localhost:3000/comments/${commentId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ body: newBody }),
+    });
+    const updatedComments = comments.map((c) => 
+      c.id === commentId ? { ...c, body: newBody } : c
+    );
+    setComments(updatedComments);
+    // Update parent component's comments
+    onCommentChange?.(post.id, updatedComments);
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    await fetch(`http://localhost:3000/comments/${commentId}`, {
+      method: "DELETE",
+    });
+    const updatedComments = comments.filter((c) => c.id !== commentId);
+    setComments(updatedComments);
+    // Update parent component's comments
+    onCommentChange?.(post.id, updatedComments);
   };
 
   if (!post) return null;
 
   return (
-    <div className={styles.modalOverlay}>
-      <div className={styles.modal}>
+    <div className={styles.modalOverlay} onClick={onClose}>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <button className={styles.close} onClick={onClose}>×</button>
         
-      
-        <h2>{post.title}</h2>
-        <p>{post.body}</p>
-        {/* ✅ כפתור הצגת תגובות */}
-        <button onClick={() => setShowComments((prev) => !prev)}>
-          {showComments ? "Hide Comments" : "Show Comments"}
-        </button>
+        <div className={styles.postContent}>
+          <span className={styles.postId}>Post #{post.id}</span>
+          <h2>{post.title}</h2>
+          <p className={styles.postBody}>{post.body}</p>
+        </div>
 
-        {/* ✅ בלוק תגובות */}
-        {showComments && (
-          <div className={styles.comments}>
-            <h4>Comments</h4>
-            <ul>
-              {comments.map((c) => (
-                <li key={c.id}>
-                  <strong>{c.name}</strong>: {c.body}
-                </li>
-              ))}
-            </ul>
+        <div className={styles.commentsSection}>
+          <div className={styles.commentsHeader}>
+            <h3>Comments</h3>
+            <button 
+              className={styles.toggleComments}
+              onClick={() => setShowComments(!showComments)}
+            >
+              {showComments ? "Hide Comments" : "Show Comments"}
+            </button>
           </div>
-        )}
+
+          {showComments && (
+            <>
+              <div className={styles.commentsList}>
+                {comments.map((comment) => {
+                  const isOwner = user && comment.email === user.email;
+                  return (
+                    <div key={comment.id} className={styles.commentItem}>
+                      <div className={styles.commentHeader}>
+                        <strong>{comment.name}</strong>
+                        {isOwner && (
+                          <button
+                            className={styles.deleteComment}
+                            onClick={() => handleDeleteComment(comment.id)}
+                          >
+                            Delete
+                          </button>
+                        )}
+                      </div>
+                      {isOwner ? (
+                        <textarea
+                          value={editingComments[comment.id] ?? comment.body}
+                          onChange={(e) =>
+                            setEditingComments((prev) => ({
+                              ...prev,
+                              [comment.id]: e.target.value,
+                            }))
+                          }
+                          onBlur={() =>
+                            handleUpdateComment(comment.id, editingComments[comment.id])
+                          }
+                          className={styles.commentEdit}
+                        />
+                      ) : (
+                        <p>{comment.body}</p>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              <form className={styles.commentForm} onSubmit={handleAddComment}>
+                <textarea
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                  placeholder="Write a comment..."
+                  required
+                />
+                <button type="submit">Add Comment</button>
+              </form>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
