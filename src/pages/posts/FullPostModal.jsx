@@ -1,12 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import styles from "../../styles/FullPostModal.module.css";
 import CommentsSection from "./CommentsSection";
 
-export default function FullPostModal({ post, user, onClose, onCommentChange }) {
+export default function FullPostModal({ post, user, onClose, onCommentChange ,onPostUpdate }) {
   const [comments, setComments] = useState([]);
   const [showComments, setShowComments] = useState(true);
   const [newComment, setNewComment] = useState("");
   const [editingComments, setEditingComments] = useState({});
+
+  const titleRef = useRef(null);
+  const bodyRef = useRef(null);
+
+  useEffect(() => {
+    if (titleRef.current) titleRef.current.value = post.title;
+    if (bodyRef.current) bodyRef.current.value = post.body;
+  }, [post]);
 
   useEffect(() => {
     if (post) {
@@ -45,6 +53,18 @@ export default function FullPostModal({ post, user, onClose, onCommentChange }) 
     setNewComment("");
   };
 
+  const handleUpdatePost = async () => {
+    const updatedTitle = titleRef.current.value;
+    const updatedBody = bodyRef.current.value;
+
+    await fetch(`http://localhost:3000/posts/${post.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title: updatedTitle, body: updatedBody }),
+    });
+
+    onPostUpdate?.(post.id, updatedTitle, updatedBody);
+  };
   const handleUpdateComment = async (commentId, newBody) => {
     await fetch(`http://localhost:3000/comments/${commentId}`, {
       method: "PATCH",
@@ -78,8 +98,20 @@ export default function FullPostModal({ post, user, onClose, onCommentChange }) 
         
         <div className={styles.postContent}>
           <span className={styles.postId}>Post #{post.id}</span>
-          <h2>{post.title}</h2>
-          <p className={styles.postBody}>{post.body}</p>
+          <input
+            type="text"
+            className={styles.editableTitle}
+            defaultValue={post.title}
+            ref={titleRef}
+            onBlur={handleUpdatePost}
+          />
+
+          <textarea
+            className={styles.editableBody}
+            defaultValue={post.body}
+            ref={bodyRef}
+            onBlur={handleUpdatePost}
+          />
         </div>
 
         <div className={styles.commentsSection}>

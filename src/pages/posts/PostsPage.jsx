@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "../../styles/PostsPage.module.css";
 import Navbar from "../../components/Navbar";
 import PostsSearchBar from "./PostsSearchBar";
@@ -8,7 +8,6 @@ import PostList from "./PostList";
 import FullPostModal from "./FullPostModal";
 
 export default function PostsPage() {
-  const { userId } = useParams();
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
@@ -55,6 +54,13 @@ export default function PostsPage() {
     setNewPost((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handlePostUpdateOnFullModal = (id, updatedTitle, updatedBody) => {
+  setPosts((prevPosts) =>
+    prevPosts.map((post) =>
+      post.id === id ? { ...post, title: updatedTitle, body: updatedBody } : post
+    )
+  );
+};
   const handleAddPost = async (e) => {
     e.preventDefault();
 
@@ -78,9 +84,25 @@ export default function PostsPage() {
   };
 
   const handleDeletePost = async (id) => {
-    await fetch(`http://localhost:3000/posts/${id}`, { method: "DELETE" });
-    setPosts((prev) => prev.filter((p) => p.id !== id));
-  };
+
+  const resComments = await fetch(`http://localhost:3000/comments?postId=${id}`);
+  const comments = await resComments.json();
+
+  await Promise.all(comments.map(comment =>
+    fetch(`http://localhost:3000/comments/${comment.id}`, { method: "DELETE" })
+  ));
+
+  
+  await fetch(`http://localhost:3000/posts/${id}`, { method: "DELETE" });
+  setPosts((prev) => prev.filter((p) => p.id !== id));
+
+  
+  setCommentsByPost((prev) => {
+    const updated = { ...prev };
+    delete updated[id];
+    return updated;
+  });
+};
 
   const handleUpdatePost = async (id, field, value) => {
     const post = posts.find((p) => p.id === id);
@@ -223,6 +245,7 @@ export default function PostsPage() {
             user={user}
             onClose={() => setModalPost(null)}
             onCommentChange={handleCommentChange}
+            onPostUpdate={handlePostUpdateOnFullModal}
           />
         )}
       </div>
